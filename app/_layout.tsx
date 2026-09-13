@@ -1,16 +1,32 @@
-import { Stack } from 'expo-router';
+import '@/global.css';
+import { useFonts } from 'expo-font';
+import { SplashScreen, Stack } from 'expo-router';
+import { useEffect } from 'react';
 import 'react-native-reanimated';
 
-import '@/global.css';
-
-import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export const unstable_settings = {
   anchor: '(tabs)',
 };
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
 
-  return   <Stack screenOptions={{headerShown : true}}/>
+  const [fontsLoaded] = useFonts({
+    "sans-regular" : require('../assets/fonts/PlusJakartaSans-Regular.ttf'),
+    "sans-bold" : require('../assets/fonts/PlusJakartaSans-Bold.ttf'),
+    "sans-medium" : require('../assets/fonts/PlusJakartaSans-Medium.ttf'),
+    "sans-semibold" : require('../assets/fonts/PlusJakartaSans-SemiBold.ttf'),
+    "sans-extraBold" : require('../assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
+    "sans-light" : require('../assets/fonts/PlusJakartaSans-Light.ttf'),
+  })
+
+  useEffect(() => {
+    if(fontsLoaded) {
+      SplashScreen.hideAsync()
+    }
+  }, [fontsLoaded])
+
+  if(!fontsLoaded) return null
+
+  return   <Stack screenOptions={{headerShown : false}}/>
 }
