@@ -9,22 +9,23 @@ export const unstable_settings = {
   anchor: '(tabs)',
 };
 
-export default function RootLayout() {
+SplashScreen.preventAutoHideAsync();
 
+export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    "sans-regular" : require('../assets/fonts/PlusJakartaSans-Regular.ttf'),
-    "sans-bold" : require('../assets/fonts/PlusJakartaSans-Bold.ttf'),
-    "sans-medium" : require('../assets/fonts/PlusJakartaSans-Medium.ttf'),
-    "sans-semibold" : require('../assets/fonts/PlusJakartaSans-SemiBold.ttf'),
-    "sans-extraBold" : require('../assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
-    "sans-light" : require('../assets/fonts/PlusJakartaSans-Light.ttf'),
-  })
+    'PlusJakartaSans-Regular': require('../assets/fonts/PlusJakartaSans-Regular.ttf'),
+    'PlusJakartaSans-Bold': require('../assets/fonts/PlusJakartaSans-Bold.ttf'),
+    'PlusJakartaSans-Medium': require('../assets/fonts/PlusJakartaSans-Medium.ttf'),
+    'PlusJakartaSans-SemiBold': require('../assets/fonts/PlusJakartaSans-SemiBold.ttf'),
+    'PlusJakartaSans-ExtraBold': require('../assets/fonts/PlusJakartaSans-ExtraBold.ttf'),
+    'PlusJakartaSans-Light': require('../assets/fonts/PlusJakartaSans-Light.ttf'),
+  });
 
   useEffect(() => {
-    if(fontsLoaded) {
-      SplashScreen.hideAsync()
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
     }
-  }, [fontsLoaded])
+  }, [fontsLoaded]);
 
   if(!fontsLoaded) return null
 
